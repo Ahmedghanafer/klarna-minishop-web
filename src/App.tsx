@@ -4,7 +4,9 @@ export default function App() {
     const [text, setText] = useState("Checking API...");
 
     useEffect(() => {
-        fetch("http://localhost:5205/health")
+        const baseUrl = import.meta.env.VITE_API_BASE_URL;
+        fetch(`${baseUrl}/health`)
+
             .then(r => r.json())
             .then(d => setText(`API status: ${d.status} v${d.version}`))
             .catch(() => setText("Failed to reach API"));
